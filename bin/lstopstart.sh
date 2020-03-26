@@ -17,7 +17,7 @@ if [ "$hosts" ]; then
     echo "[STOPSTART] hosts pra iniciar $service: $hosts"
     echo "[STOPSTART] DKPARAMS=$DKPARAMS"
     for host in $hosts; do
-        ssh -o StrictHostKeyChecking=no $host dockerutils/remotebin/stopstart.sh $app $version $environ $service "$DKPARAMS"
+        ssh -o GlobalKnownHostsFile=/dev/null -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $host dockerutils/remotebin/stopstart.sh $app $version $environ $service "$DKPARAMS"
         echo "[STOPSTART] $service iniciado no host $host"
     done
 fi
