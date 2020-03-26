@@ -37,6 +37,8 @@ resolve_target_hosts() {
         list_asg.sh $ASG
     elif [ "aws_tsg" == "$TARGET_TYPE" ]; then
         list_tsg.sh $TSG
+    elif [ "aws_tag" == "$TARGET_TYPE" ]; then
+        list_tsg.sh $tag_name $tag_value
     else
         echo $HOST
     fi
