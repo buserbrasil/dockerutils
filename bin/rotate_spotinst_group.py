@@ -14,7 +14,7 @@ def main():
     parser.add_argument('--ACCOUNT_ID', required=True, help='SpotInst Account Id')
     parser.add_argument('--PERCENTAGE', required=False, default=100, help='Percentage to be replaced in each batch')
     parser.add_argument('--GRACE_PERIOD', required=False, default=600, help='Grace period')
-    parser.add_argument('--ROLLBACK_PERIOD', required=False, default=600, help='Grace period')
+    parser.add_argument('--ROLLBACK_PERIOD', required=False, default=600, help='Rollback period')
     parser.add_argument('--STRATEGY', required=False, default='REPLACE_SERVER', help='The roll action to perform. valid values: REPLACE_SERVER, RESTART_SERVER')
     parser.add_argument('--HEALTH_CHECK_TYPE', required=False, default='TARGET_GROUP', help='Where health check is set. Values are: ELB, ECS_CLUSTER_INSTANCE, TARGET_GROUP, OPSWORKS, NOMAD_NODE, MULTAI_TARGET_SET, HCS, EC2, NONE')
     args = parser.parse_args()
