@@ -18,9 +18,16 @@ def main():
     parser.add_argument('--HEALTH_CHECK_TYPE', required=False, default='TARGET_GROUP', help='Where health check is set. Values are: ELB, ECS_CLUSTER_INSTANCE, TARGET_GROUP, OPSWORKS, NOMAD_NODE, MULTAI_TARGET_SET, HCS, EC2, NONE')
     args = parser.parse_args()
     global group_id, account_id, percentage, grace_period, strategy_action, health_check_type
-    group_id, account_id, percentage, grace_period, strategy_action, health_check_type = args.GROUP_ID, args.ACCOUNT_ID, args.PERCENTAGE, args.GRACE_PERIOD, args.STRATEGY, args.HEALTH_CHECK_TYPE
+    group_id = args.GROUP_ID
+    account_id = args.ACCOUNT_ID
+    percentage = args.PERCENTAGE
+    grace_period = args.GRACE_PERIOD
+    strategy_action = args.STRATEGY
+    health_check_type = args.HEALTH_CHECK_TYPE
     print('args:', group_id, account_id, percentage, grace_period, strategy_action, health_check_type)
+    print('Starting Rotate....')
     rotate()
+    print('Rotate Finished!')
 
 
 def rotate():
