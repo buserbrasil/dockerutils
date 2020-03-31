@@ -26,7 +26,9 @@ def main():
 def rotate():
     payload = get_payload()
     headers = get_headers()
-    r = requests.put(f'https://api.spotinst.io/aws/ec2/group/{group_id}/roll?accountId={account_id}', data=json.dumps(payload), headers=headers)
+    url = f'https://api.spotinst.io/aws/ec2/group/{group_id}/roll?accountId={account_id}'
+    print('request PUT into', url)
+    r = requests.put(url, data=json.dumps(payload), headers=headers)
     resp = r.json()
     if r.status_code != requests.codes.ok:
         print(r.text)
