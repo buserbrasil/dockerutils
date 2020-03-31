@@ -33,7 +33,7 @@ def main():
 def rotate():
     payload = get_payload()
     headers = get_headers()
-    url = f'https://api.spotinst.io/aws/ec2/group/{group_id}/roll?accountId={account_id}'
+    url = 'https://api.spotinst.io/aws/ec2/group/{group_id}/roll?accountId={account_id}'.format(group_id=group_id, account_id=account_id)
     print('request PUT into', url)
     r = requests.put(url, data=json.dumps(payload), headers=headers)
     resp = r.json()
@@ -87,7 +87,8 @@ def waitTrue(interval, timeout, func):
 def _check_rollup_done(roll_id):
     def f():
         headers = get_headers()
-        r = requests.get(f'https://api.spotinst.io/aws/ec2/group/{group_id}/roll/{roll_id}?accountId={account_id}', headers=headers)
+        url = 'https://api.spotinst.io/aws/ec2/group/{group_id}/roll/{roll_id}?accountId={account_id}'.format(group_id=group_id, account_id=account_id, roll_id=roll_id)
+        r = requests.get(url, headers=headers)
         if r.status_code != requests.codes.ok:
             raise Exception('Error checking rollup')
         resp = r.json()
