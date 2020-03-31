@@ -19,7 +19,7 @@ def main():
     args = parser.parse_args()
     global group_id, account_id, percentage, grace_period, strategy_action, health_check_type
     group_id, account_id, percentage, grace_period, strategy_action, health_check_type = args.GROUP_ID, args.ACCOUNT_ID, args.PERCENTAGE, args.GRACE_PERIOD, args.STRATEGY, args.HEALTH_CHECK_TYPE
-    print(group_id, account_id, percentage, grace_period, strategy_action, health_check_type)
+    print('args:', group_id, account_id, percentage, grace_period, strategy_action, health_check_type)
     rotate()
 
 
