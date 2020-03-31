@@ -27,6 +27,9 @@ def rotate():
     break_if_protected(asg)
     tgarn = getTargetGroupARN()
     minsize, desired, maxsize = asg['MinSize'], asg['DesiredCapacity'], asg['MaxSize']
+    if desired == 0:
+        print('Empty ASG! Exiting!')
+        return
     print('ASG starting with min=%s, desired=%s, max=%s' % (minsize, desired, maxsize))
     old_ids = getOldInstanceIds(asg)
     print('Lets scale UP')
