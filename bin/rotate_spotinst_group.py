@@ -49,7 +49,7 @@ def get_headers():
     spotinst_token = os.getenv('SPOTINST_TOKEN')
     return {
         'content-type': 'application/json',
-        'Authorization': f'Bearer {spotinst_token}'
+        'Authorization': 'Bearer {spotinst_token}'.format(spotinst_token=spotinst_token)
     }
 
 
@@ -93,7 +93,7 @@ def _check_rollup_done(roll_id):
             raise Exception('Error checking rollup')
         resp = r.json()
         deployment_status = resp['response']['items'][-1]['status']
-        print(f'Deployment of {roll_id} is {deployment_status}')
+        print('Deployment of {roll_id} is {deployment_status}'.format(roll_id=roll_id, deployment_status=deployment_status))
         return deployment_status == 'finished'
     return f
 
