@@ -2,7 +2,6 @@
 app=$1
 version=$2
 environ=$3
-DKPARAMS="${@:4}"
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 source $SCRIPTPATH/common.sh
@@ -38,12 +37,12 @@ dkstartnew(){
     local nextcolor=$3
     local image=$app:$environ
     local envfile=$HOME/${canonized_app}_${environ}.env
-    echo "iniciando container $nextname with DKPARAMS=$DKPARAMS"
+    echo "iniciando container $nextname"
     local dkdata="$HOME/dockerdata/${app}_${environ}/$nextcolor"
     mkdir -p $dkdata
     docker stop $nextname || true
     docker rm $nextname || true
-    docker run $DKPARAMS -d --restart=unless-stopped --name=$nextname --env-file=$envfile -v $dkdata:/dkdata $image start.sh
+    docker run -d --restart=unless-stopped --name=$nextname --env-file=$envfile -v $dkdata:/dkdata $image start.sh
     echo espera subir
     docker exec $nextname wait_for_start.sh
     local exitcode=$?
