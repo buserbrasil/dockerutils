@@ -2,6 +2,7 @@
 app=$1
 version=$2
 environ=$3
+DKPARAMS="$4"
 
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 source $SCRIPTPATH/common.sh
@@ -10,7 +11,7 @@ source_app_env $app $environ
 function vaibluegreen(){
     host=$1
     set -e
-    ssh -o StrictHostKeyChecking=no $host dockerutils/remotebin/$cmd $app $version $environ
+    ssh -o StrictHostKeyChecking=no $host dockerutils/remotebin/$cmd $app $version $environ "$DKPARAMS"
     echo "[BLUEGREEN] deploy feito no host $host"
 
 }
@@ -43,6 +44,7 @@ if [ "$hosts" ]; then
     ahosts=($hosts)
 
     echo "[BLUEGREEN] hosts pra deploy: $hosts"
+    echo "[BLUEGREEN] DKPARAMS=$DKPARAMS"
 
     i=0
     for host in $hosts; do
