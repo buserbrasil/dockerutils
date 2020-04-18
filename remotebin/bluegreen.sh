@@ -42,7 +42,7 @@ dkstartnew(){
     mkdir -p $dkdata
     docker stop $nextname || true
     docker rm $nextname || true
-    docker run -d --restart=unless-stopped --name=$nextname --env-file=$envfile -v $dkdata:/dkdata $image start.sh
+    docker run -d --restart=unless-stopped --name=$nextname --env-file=$envfile -v $dkdata:/dkdata --sysctl net.core.somaxconn=65535 $image start.sh
     echo espera subir
     docker exec $nextname wait_for_start.sh
     local exitcode=$?
