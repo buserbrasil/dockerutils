@@ -10,7 +10,7 @@ source_app_env $app $environ
 function vaibluegreen(){
     host=$1
     set -e
-    ssh -o StrictHostKeyChecking=no $host dockerutils/remotebin/$cmd $app $version $environ
+    ssh -o StrictHostKeyChecking=no $host dockerutils/remotebin/$cmd $app $version $environ "$DKPARAMS"
     echo "[BLUEGREEN] deploy feito no host $host"
 
 }
